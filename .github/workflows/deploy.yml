@@ -36,6 +36,15 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Debug - Check config files
+        run: |
+          echo "=== Checking Next.js config files ==="
+          ls -la next.config* || echo "No next.config files with wildcard"
+          echo "=== Content of next.config.mjs ==="
+          cat next.config.mjs
+          echo "=== Git commit info ==="
+          git log -1 --oneline
+
       - name: Build with Next.js
         run: npm run build
         env:
