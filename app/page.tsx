@@ -24,8 +24,14 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center animate-slide-up" style={{ animationDelay: '0.2s' }}>
             <a
-              href="#events"
+              href="/register"
               className="px-6 py-2.5 bg-black text-white font-medium rounded-md hover:bg-black/80 hover:scale-105 transition-all text-sm"
+            >
+              Register Now
+            </a>
+            <a
+              href="#events"
+              className="px-6 py-2.5 border border-black/20 font-medium rounded-md hover:border-black/40 hover:scale-105 transition-all text-sm"
             >
               View Events
             </a>
