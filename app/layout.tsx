@@ -11,7 +11,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "AustroVis - Visualization & Visual Analytics Workshops",
-  description: "A workshop series focused on visualization and visual analytics at Austrian universities.",
+  description: "A workshop series focused on visualization and visual analytics at Austrian institutions.",
 };
 
 export default function RootLayout({
