@@ -2,16 +2,6 @@
 
 A modern, minimal website for the AustroVis workshop series - focused on visualization and visual analytics at Austrian universities.
 
-## Features
-
-- 🎨 Modern, minimal design with black & white theme
-- 📅 Event listings (past and upcoming)
-- 📧 Newsletter signup integration
-- 🔗 Social media links (Discord, Twitter, GitHub)
-- 📱 Fully responsive design
-- ⚡ Built with Next.js 15 and Tailwind CSS
-- 🚀 Automated deployment to GitHub Pages
-
 ## Tech Stack
 
 - **Framework:** Next.js 15 (App Router)
@@ -129,7 +119,3 @@ This creates a static export in the `/out` directory.
 ## License
 
 MIT License - feel free to use this template for your own workshop series!
-
-## Contact
-
-For questions or suggestions, join our [Discord](https://discord.gg/example) community.
