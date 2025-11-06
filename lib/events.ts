@@ -8,7 +8,7 @@ export const events: Event[] = [
     location: 'Vienna, Austria',
     university: 'University of Vienna',
     description: 'The first edition of the AustroVis Workshop.',
-    speakers: ['Torsten M&ouml;ller'],
+    speakers: ['Torsten Möller'],
     materials: {
       slides: '',
       recording: '',
@@ -31,8 +31,8 @@ export const events: Event[] = [
     id: '3',
     title: '3rd Edition AustroVis Workshop',
     date: new Date('2025-02-25'),
-    location: 'St. P&ouml;lten, Austria',
-    university: 'University of Applied Sciences, St. P&ouml;lten',
+    location: 'St. Pölten, Austria',
+    university: 'University of Applied Sciences, St. Pölten',
     description: 'The third edition of the AustroVis Workshop.',
     speakers: ['Wolfgang Aigner'],
     materials: {
