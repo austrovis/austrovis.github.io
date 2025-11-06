@@ -45,11 +45,9 @@ export default function EventCard({ event, isPast = false }: EventCardProps) {
       <p className="text-sm text-black/70 mb-3">{event.description}</p>
       
       <div className="flex flex-wrap gap-2">
-        {event.registrationLink && (
+        {!isPast && (
           <a
-            href={event.registrationLink}
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/register"
             className="px-4 py-2 text-sm font-medium bg-black text-white rounded-md hover:bg-black/80 transition-colors"
           >
             Register Now

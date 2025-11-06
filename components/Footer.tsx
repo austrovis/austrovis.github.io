@@ -20,14 +20,6 @@ export default function Footer() {
               Discord
             </a>
             <a 
-              href="https://twitter.com/austrovis" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-sm text-black/60 hover:text-black transition-colors"
-            >
-              Twitter
-            </a>
-            <a 
               href="https://github.com/austrovis" 
               target="_blank" 
               rel="noopener noreferrer"
