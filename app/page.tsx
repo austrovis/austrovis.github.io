@@ -36,7 +36,7 @@ export default function Home() {
               View Events
             </a>
             <a
-              href="https://discord.gg/example"
+              href="https://discord.gg/rbkSzsxP47"
               target="_blank"
               rel="noopener noreferrer"
               className="px-6 py-2.5 border border-black/20 font-medium rounded-md hover:border-black/40 hover:scale-105 transition-all text-sm"

@@ -12,7 +12,7 @@ export default function Footer() {
           <div className="flex flex-col gap-4">
             <h4 className="text-sm font-semibold">Connect</h4>
             <a 
-              href="https://discord.gg/example" 
+              href="https://discord.gg/rbkSzsxP47" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-sm text-black/60 hover:text-black transition-colors"

@@ -27,13 +27,14 @@ export default function Header() {
       >
         <Link 
           href="/" 
-          className="text-lg font-bold tracking-tight hover:opacity-70 transition-opacity"
+          className="flex items-center gap-2 text-lg font-bold tracking-tight hover:opacity-70 transition-opacity"
         >
+            <img src="/logo.svg" alt="AustroVis Logo" width="28" height="28" className="inline-block" />
           AustroVis
         </Link>
         <div className="w-px h-6 bg-black/10" />
         <a 
-          href="https://discord.gg/example" 
+          href="https://discord.gg/rbkSzsxP47" 
           target="_blank" 
           rel="noopener noreferrer"
           className="px-4 py-1.5 bg-black text-white text-sm font-medium rounded-full hover:bg-black/80 transition-colors"
