@@ -4,19 +4,24 @@ import { useState } from 'react';
 
 export default function NewsletterSignup() {
   const [email, setEmail] = useState('');
+  const [submittedEmail, setSubmittedEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('loading');
     
-    // Simulate API call - replace with your actual mailing list service
-    setTimeout(() => {
-      console.log('Email submitted:', email);
-      setStatus('success');
-      setEmail('');
-      setTimeout(() => setStatus('idle'), 3000);
-    }, 1000);
+    await fetch("https://austrovis-mailinglist.netlify.app/.netlify/functions/send-mail", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ senderEmail: email }),
+    });
+
+    console.log('Email submitted:', email);
+    // Alert message will be shown by the success status div below
+    setSubmittedEmail(email);
+    setStatus('success');
+    setEmail('');
   };
 
   return (
@@ -26,6 +31,22 @@ export default function NewsletterSignup() {
         <p className="text-white/70 mb-6 text-base">
           Join our mailing list to receive updates about upcoming workshops and events.
         </p>
+        
+        {status === 'success' && (
+          <div className="mb-6 p-4 bg-green-500/20 border border-green-500/50 rounded-lg">
+            <div className="flex items-start gap-3">
+              <svg className="w-6 h-6 text-green-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <div className="text-left">
+                <h3 className="font-semibold text-green-400 mb-1">Subscription Successful!</h3>
+                <p className="text-sm text-white/90">
+                  Further instructions to finalize your subscription have been sent to <span className="font-medium text-white">{submittedEmail}</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
         
         <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
           <input
@@ -46,11 +67,6 @@ export default function NewsletterSignup() {
           </button>
         </form>
         
-        {status === 'success' && (
-          <p className="mt-4 text-sm text-white/70">
-            Thanks for subscribing! Check your email for confirmation.
-          </p>
-        )}
         {status === 'error' && (
           <p className="mt-4 text-sm text-red-400">
             Something went wrong. Please try again.
