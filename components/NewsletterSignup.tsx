@@ -10,18 +10,27 @@ export default function NewsletterSignup() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('loading');
-    
-    await fetch("https://austrovis-mailinglist.netlify.app/.netlify/functions/send-mail", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ senderEmail: email }),
-    });
+    try {
+      const formData = new URLSearchParams();
+      formData.append("email-address", email);
 
-    console.log('Email submitted:', email);
-    // Alert message will be shown by the success status div below
-    setSubmittedEmail(email);
-    setStatus('success');
-    setEmail('');
+      await fetch(process.env.MAILMAN_SUBSCRIBE_URL!, {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: formData.toString(),
+      });
+
+      console.log('Email submitted:', email);
+      // Alert message will be shown by the success status div below
+      setSubmittedEmail(email);
+      setStatus('success');
+      setEmail('');
+
+    } catch (error) {
+      console.error('Error submitting email:', error);
+      setStatus('error');
+      return;
+    }
   };
 
   return (
