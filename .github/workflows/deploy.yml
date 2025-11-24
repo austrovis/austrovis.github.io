@@ -48,8 +48,9 @@ jobs:
       - name: Build with Next.js
         run: npm run build
         env:
-          MAILMAN_SUBSCRIBE_URL: ${{ vars.MAILMAN_SUBSCRIBE_URL }}
           NODE_ENV: production
+          NEXT_PUBLIC_NEWSLETTER_API_URL: ${{ secrets.NEXT_PUBLIC_NEWSLETTER_API_URL }}
+          NEXT_PUBLIC_REGISTER_API_URL: ${{ secrets.NEXT_PUBLIC_REGISTER_API_URL }}
 
       - name: Verify build output
         run: |
