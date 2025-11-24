@@ -24,7 +24,9 @@ export default function RegisterPage() {
     setError('');
     
     try {
-      const response = await fetch('/api/register', {
+      // Use external API endpoint for GitHub Pages deployment
+      const apiUrl = process.env.NEXT_PUBLIC_REGISTER_API_URL || '/api/register';
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

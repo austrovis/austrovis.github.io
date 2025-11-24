@@ -10,26 +10,29 @@ export default function NewsletterSignup() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('loading');
+    
     try {
-      const formData = new URLSearchParams();
-      formData.append("email-address", email);
-
-      await fetch(process.env.MAILMAN_SUBSCRIBE_URL!, {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: formData.toString(),
+      // Use external API endpoint for GitHub Pages deployment
+      const apiUrl = process.env.NEXT_PUBLIC_NEWSLETTER_API_URL || '/api/newsletter';
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
       });
 
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Subscription failed');
+      }
+
       console.log('Email submitted:', email);
-      // Alert message will be shown by the success status div below
       setSubmittedEmail(email);
       setStatus('success');
       setEmail('');
-
     } catch (error) {
       console.error('Error submitting email:', error);
       setStatus('error');
-      return;
     }
   };
 
