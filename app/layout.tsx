@@ -9,8 +9,8 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-const SITE_TITLE = 'Austrovis';
-const SITE_DESCRIPTION = 'Visualizations and research by Austrovis';
+const SITE_TITLE = 'AustroVis';
+const SITE_DESCRIPTION = 'A workshop series focused on visualization and visual analytics at Austrian institutions.';
 const SITE_URL = 'https://austrovis.github.io';
 
 export const metadata: Metadata = {
@@ -37,10 +37,8 @@ export const metadata: Metadata = {
         url: '/opengraph.png',
         width: 1200,
         height: 630,
-        alt: 'Austrovis — visualizations and research',
       },
     ],
-    locale: 'en_US',
     type: 'website',
   },
   twitter: {
