@@ -48,13 +48,46 @@ export default function NewsletterSignup() {
           <div className="mb-6 p-4 bg-green-500/20 border border-green-500/50 rounded-lg">
             <div className="flex items-start gap-3">
               <svg className="w-6 h-6 text-green-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               <div className="text-left">
-                <h3 className="font-semibold text-green-400 mb-1">Subscription Successful!</h3>
-                <p className="text-sm text-white/90">
-                  Further instructions to finalize your subscription have been sent to <span className="font-medium text-white">{submittedEmail}</span>
-                </p>
+              <h3 className="font-semibold text-green-400 mb-1">Subscription Successful!</h3>
+              <p className="text-sm text-white/90">
+                Further instructions to finalize your subscription have been sent to <span className="font-medium text-white">{submittedEmail}</span>
+              </p>
+              <div className="mt-3 text-left text-xs text-white/70 sm:text-sm">
+                <div className="flex items-center gap-2">
+                  <svg
+                    className="h-4 w-4 text-green-400 shrink-0"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l9 6 9-6" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 18h14a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2Z" />
+                  </svg>
+                  <span className="text-white/80">
+                    Not in your inbox? Take a quick look in spam or the promotions tab.
+                  </span>
+                </div>
+                <div className="mt-1 flex items-center gap-2">
+                  <svg
+                    className="h-4 w-4 text-green-400 shrink-0"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M16 17l5-5-5-5" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M8 7l-5 5 5 5" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l-4 14" />
+                  </svg>
+                  <span>
+                    Add us to your contacts so future updates land exactly where you expect.
+                  </span>
+                </div>
+              </div>
               </div>
             </div>
           </div>
