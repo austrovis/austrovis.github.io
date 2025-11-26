@@ -9,9 +9,16 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
+const SITE_TITLE = 'AustroVis';
+const SITE_DESCRIPTION = 'A workshop series focused on visualization and visual analytics at Austrian institutions.';
+const SITE_URL = 'https://austrovis.github.io';
+
 export const metadata: Metadata = {
-  title: "AustroVis - Visualization & Visual Analytics Workshops",
-  description: "A workshop series focused on visualization and visual analytics at Austrian institutions.",
+  title: {
+    default: SITE_TITLE,
+    template: `%s | ${SITE_TITLE}`,
+  },
+  description: SITE_DESCRIPTION,
   icons: {
     icon: [
       { url: '/favicon.svg', type: 'image/svg+xml' },
@@ -19,6 +26,26 @@ export const metadata: Metadata = {
     apple: [
       { url: '/logo.svg', type: 'image/svg+xml' },
     ],
+  },
+  openGraph: {
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    url: SITE_URL,
+    siteName: SITE_TITLE,
+    images: [
+      {
+        url: '/opengraph.png',
+        width: 1200,
+        height: 630,
+      },
+    ],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    images: ['/opengraph.png'],
   },
 };
 
