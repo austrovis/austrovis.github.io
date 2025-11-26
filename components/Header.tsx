@@ -34,7 +34,7 @@ export default function Header() {
         </Link>
         <div className="w-px h-6 bg-black/10" />
         <a 
-          href="https://discord.gg/example" 
+          href="https://discord.gg/rbkSzsxP47" 
           target="_blank" 
           rel="noopener noreferrer"
           className="p-2 rounded-lg hover:bg-black/5 transition-all duration-300 group"
