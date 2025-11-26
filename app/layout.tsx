@@ -14,6 +14,7 @@ const SITE_DESCRIPTION = 'A workshop series focused on visualization and visual 
 const SITE_URL = 'https://austrovis.github.io';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
     default: SITE_TITLE,
     template: `%s | ${SITE_TITLE}`,
