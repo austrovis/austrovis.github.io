@@ -80,6 +80,7 @@ git checkout -b fix/bug-description
 - `feature/` - New features or enhancements
 - `fix/` - Bug fixes
 - `docs/` - Documentation updates
+- `content/` - Content changes and updates   
 - `style/` - Code style changes (formatting, etc.)
 - `refactor/` - Code refactoring
 - `test/` - Adding or updating tests
