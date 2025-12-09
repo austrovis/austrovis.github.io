@@ -10,7 +10,7 @@ const inter = Inter({
 });
 
 const SITE_TITLE = 'AustroVis';
-const SITE_DESCRIPTION = 'A workshop series focused on visualization and visual analytics at Austrian institutions.';
+const SITE_DESCRIPTION = 'A community of researchers, students, and practitioners interested in data visualization and visual analytics in Austria.';
 const SITE_URL = 'https://austrovis.github.io';
 
 export const metadata: Metadata = {

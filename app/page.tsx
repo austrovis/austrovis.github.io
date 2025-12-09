@@ -14,13 +14,13 @@ export default function Home() {
       <section className="relative min-h-[85vh] flex items-center justify-center px-6 border-b border-black/10 overflow-hidden">
         {/* Hero Image with Parallax */}
         <ParallaxHero />
-        
+
         <div className="relative z-10 max-w-4xl mx-auto text-center animate-fade-in">
           <h1 className="text-5xl md:text-6xl font-bold tracking-tight mb-4 animate-slide-up">
             AustroVis
           </h1>
           <p className="text-lg md:text-xl text-black/70 mb-6 max-w-2xl mx-auto animate-slide-up" style={{ animationDelay: '0.1s' }}>
-            A workshop series focused on visualization and visual analytics at Austrian universities.
+            A community of researchers, students, and practitioners interested in data visualization and visual analytics in Austria.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center animate-slide-up" style={{ animationDelay: '0.2s' }}>
             <a
@@ -45,6 +45,21 @@ export default function Home() {
             </a>
           </div>
         </div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="py-16 px-6">
+        <ScrollReveal>
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl font-bold mb-3">About the AustroVis Workshop</h2>
+            <p className="text-base text-black/70 mb-4">
+              The workshop brings together the visualization community in Austria to share knowledge and build connections.
+            </p>
+            <p className="text-base text-black/70">
+              The AustroVis Workshop covers a wide range of topics in visualization, from fundamental visualization principles to advanced techniques in interactive visualization, visual analytics, and machine learning visualization.
+            </p>
+          </div>
+        </ScrollReveal>
       </section>
 
       {/* Upcoming Events */}
@@ -93,23 +108,6 @@ export default function Home() {
             </ScrollReveal>
           )}
         </div>
-      </section>
-
-      {/* About Section */}
-      <section id="about" className="py-16 px-6">
-        <ScrollReveal>
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-4">About AustroVis</h2>
-            <p className="text-base text-black/70 mb-4">
-              AustroVis is a collaborative workshop series bringing together researchers, students, and practitioners 
-              interested in data visualization and visual analytics across Austrian universities.
-            </p>
-            <p className="text-base text-black/70">
-              Our workshops cover a wide range of topics, from fundamental visualization principles to advanced 
-              techniques in interactive visualization, visual analytics, and machine learning visualization.
-            </p>
-          </div>
-        </ScrollReveal>
       </section>
 
       {/* Newsletter Signup */}
