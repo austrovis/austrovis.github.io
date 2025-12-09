@@ -6,7 +6,7 @@ export default function Footer() {
           <div>
             <h3 className="text-xl font-bold mb-2">AustroVis</h3>
             <p className="text-sm text-black/60 max-w-md">
-              A workshop series focused on visualization and visual analytics at Austrian universities.
+              A community of researchers, students, and practitioners interested in data visualization and visual analytics in Austria.
             </p>
           </div>
           <div className="flex flex-col gap-4">
