@@ -37,10 +37,10 @@ export default function NewsletterSignup() {
   };
 
   return (
-    <div className="bg-black text-white py-16 px-6">
+    <div className="bg-black dark:bg-[#2f3136] darkest:bg-black text-white py-16 px-6">
       <div className="max-w-3xl mx-auto text-center">
         <h2 className="text-2xl md:text-3xl font-bold mb-3">Stay Updated</h2>
-        <p className="text-white/70 mb-6 text-base">
+        <p className="text-white/70 dark:text-[#b9bbbe] darkest:text-white/70 mb-6 text-base">
           Join our mailing list to receive updates about upcoming workshops and events.
         </p>
         
