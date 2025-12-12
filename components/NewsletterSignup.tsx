@@ -40,8 +40,13 @@ export default function NewsletterSignup() {
     <div className="bg-black text-white py-16 px-6">
       <div className="max-w-3xl mx-auto text-center">
         <h2 className="text-2xl md:text-3xl font-bold mb-3">Stay Updated</h2>
-        <p className="text-white/70 mb-6 text-base">
+        <p className="text-white/70 mb-2 text-base">
           Join our mailing list to receive updates about upcoming workshops and events.
+        </p>
+        <p className="text-white/60 mb-6 text-sm">
+          <a href="/mailing-list" className="underline hover:text-white/80 transition-colors">
+            Learn more about the mailing list
+          </a>
         </p>
         
         {status === 'success' && (
