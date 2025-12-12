@@ -71,10 +71,10 @@ export default function RegisterPage() {
 
   if (!nextEvent) {
     return (
-      <main className="min-h-screen bg-white pt-32 pb-16 px-4">
+      <main className="min-h-screen bg-white dark:bg-[#36393f] darkest:bg-black pt-32 pb-16 px-4">
         <div className="max-w-2xl mx-auto text-center">
-          <h1 className="text-4xl font-bold text-black mb-4">Registration</h1>
-          <p className="text-lg text-black/60">
+          <h1 className="text-4xl font-bold text-black dark:text-white darkest:text-white mb-4">Registration</h1>
+          <p className="text-lg text-black/60 dark:text-[#b9bbbe] darkest:text-white/60">
             No upcoming events are scheduled at the moment. Please check back later.
           </p>
         </div>
@@ -83,22 +83,22 @@ export default function RegisterPage() {
   }
 
   return (
-    <main className="min-h-screen bg-white pt-32 pb-16 px-4">
+    <main className="min-h-screen bg-white dark:bg-[#36393f] darkest:bg-black pt-32 pb-16 px-4">
       <div className="max-w-2xl mx-auto">
         <div className="mb-8 text-center">
-          <h1 className="text-4xl font-bold text-black mb-4">Register for the {nextEvent.title}</h1>
-          <div className="bg-black/5 border border-black/10 rounded-lg p-6 mb-8">
-            <p className="text-lg text-black mb-2">
+          <h1 className="text-4xl font-bold text-black dark:text-white darkest:text-white mb-4">Register for the {nextEvent.title}</h1>
+          <div className="bg-black/5 dark:bg-[#2f3136] darkest:bg-white/5 border border-black/10 dark:border-[#40444b] darkest:border-white/20 rounded-lg p-6 mb-8">
+            <p className="text-lg text-black dark:text-white darkest:text-white mb-2">
               <span className="font-semibold">Date:</span> {nextEvent.date.toLocaleDateString('en-US', { 
                 year: 'numeric', 
                 month: 'long', 
                 day: 'numeric' 
               })}
             </p>
-            <p className="text-lg text-black mb-2">
+            <p className="text-lg text-black dark:text-white darkest:text-white mb-2">
               <span className="font-semibold">Location:</span> {nextEvent.university}, {nextEvent.location}
             </p>
-            <p className="text-black/70">{nextEvent.description}</p>
+            <p className="text-black/70 dark:text-[#b9bbbe] darkest:text-white/70">{nextEvent.description}</p>
           </div>
         </div>
 
@@ -109,22 +109,22 @@ export default function RegisterPage() {
         )}
 
         {submitted ? (
-          <div className="bg-green-50 border border-green-200 rounded-lg p-8 text-center">
-            <h2 className="text-2xl font-bold text-green-900 mb-4">Thank You!</h2>
-            <p className="text-green-800 mb-4">
+          <div className="bg-green-50 dark:bg-green-900/20 darkest:bg-green-900/20 border border-green-200 dark:border-green-700 darkest:border-green-700 rounded-lg p-8 text-center">
+            <h2 className="text-2xl font-bold text-green-900 dark:text-green-400 darkest:text-green-400 mb-4">Thank You!</h2>
+            <p className="text-green-800 dark:text-green-300 darkest:text-green-300 mb-4">
               Your registration has been received. We&apos;ll get back to you soon with more details.
             </p>
             <button
               onClick={() => setSubmitted(false)}
-              className="text-black hover:text-black/70 underline"
+              className="text-black dark:text-white darkest:text-white hover:text-black/70 dark:hover:text-white/70 darkest:hover:text-white/70 underline"
             >
               Submit another registration
             </button>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="border border-black/10 rounded-lg p-8">
+          <form onSubmit={handleSubmit} className="border border-black/10 dark:border-[#40444b] darkest:border-white/20 rounded-lg p-8 bg-white dark:bg-[#2f3136] darkest:bg-black">
             <div className="mb-6">
-              <label htmlFor="name" className="block text-sm font-semibold text-black mb-2">
+              <label htmlFor="name" className="block text-sm font-semibold text-black dark:text-white darkest:text-white mb-2">
                 Name (Presenter) <span className="text-red-500">*</span>
               </label>
               <input
@@ -134,13 +134,13 @@ export default function RegisterPage() {
                 required
                 value={formData.name}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-black/20 rounded-lg focus:ring-2 focus:ring-black focus:border-black outline-none transition"
+                className="w-full px-4 py-2 border border-black/20 dark:border-[#40444b] darkest:border-white/20 rounded-lg focus:ring-2 focus:ring-black dark:focus:ring-white darkest:focus:ring-white focus:border-black dark:focus:border-white darkest:focus:border-white outline-none transition bg-white dark:bg-[#1e1f22] darkest:bg-[#0a0a0a] text-black dark:text-white darkest:text-white placeholder:text-black/40 dark:placeholder:text-[#72767d] darkest:placeholder:text-white/40"
                 placeholder="Your full name"
               />
             </div>
 
             <div className="mb-6">
-              <label htmlFor="talkTitle" className="block text-sm font-semibold text-black mb-2">
+              <label htmlFor="talkTitle" className="block text-sm font-semibold text-black dark:text-white darkest:text-white mb-2">
                 Talk Title <span className="text-red-500">*</span>
               </label>
               <input
@@ -150,13 +150,13 @@ export default function RegisterPage() {
                 required
                 value={formData.talkTitle}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-black/20 rounded-lg focus:ring-2 focus:ring-black focus:border-black outline-none transition"
+                className="w-full px-4 py-2 border border-black/20 dark:border-[#40444b] darkest:border-white/20 rounded-lg focus:ring-2 focus:ring-black dark:focus:ring-white darkest:focus:ring-white focus:border-black dark:focus:border-white darkest:focus:border-white outline-none transition bg-white dark:bg-[#1e1f22] darkest:bg-[#0a0a0a] text-black dark:text-white darkest:text-white placeholder:text-black/40 dark:placeholder:text-[#72767d] darkest:placeholder:text-white/40"
                 placeholder="Title of your presentation"
               />
             </div>
 
             <div className="mb-6">
-              <label htmlFor="description" className="block text-sm font-semibold text-black mb-2">
+              <label htmlFor="description" className="block text-sm font-semibold text-black dark:text-white darkest:text-white mb-2">
                 Short Description <span className="text-red-500">*</span>
               </label>
               <textarea
@@ -166,14 +166,14 @@ export default function RegisterPage() {
                 value={formData.description}
                 onChange={handleChange}
                 rows={4}
-                className="w-full px-4 py-2 border border-black/20 rounded-lg focus:ring-2 focus:ring-black focus:border-black outline-none transition resize-none"
+                className="w-full px-4 py-2 border border-black/20 dark:border-[#40444b] darkest:border-white/20 rounded-lg focus:ring-2 focus:ring-black dark:focus:ring-white darkest:focus:ring-white focus:border-black dark:focus:border-white darkest:focus:border-white outline-none transition resize-none bg-white dark:bg-[#1e1f22] darkest:bg-[#0a0a0a] text-black dark:text-white darkest:text-white placeholder:text-black/40 dark:placeholder:text-[#72767d] darkest:placeholder:text-white/40"
                 placeholder="Brief description of your talk (200-300 words)"
               />
             </div>
 
             <div className="mb-8">
-              <label htmlFor="expectations" className="block text-sm font-semibold text-black mb-2">
-                What do you expect? <span className="text-black/40">(Optional)</span>
+              <label htmlFor="expectations" className="block text-sm font-semibold text-black dark:text-white darkest:text-white mb-2">
+                What do you expect? <span className="text-black/40 dark:text-white/40 darkest:text-white/40">(Optional)</span>
               </label>
               <textarea
                 id="expectations"
@@ -181,7 +181,7 @@ export default function RegisterPage() {
                 value={formData.expectations}
                 onChange={handleChange}
                 rows={3}
-                className="w-full px-4 py-2 border border-black/20 rounded-lg focus:ring-2 focus:ring-black focus:border-black outline-none transition resize-none"
+                className="w-full px-4 py-2 border border-black/20 dark:border-[#40444b] darkest:border-white/20 rounded-lg focus:ring-2 focus:ring-black dark:focus:ring-white darkest:focus:ring-white focus:border-black dark:focus:border-white darkest:focus:border-white outline-none transition resize-none bg-white dark:bg-[#1e1f22] darkest:bg-[#0a0a0a] text-black dark:text-white darkest:text-white placeholder:text-black/40 dark:placeholder:text-[#72767d] darkest:placeholder:text-white/40"
                 placeholder="Share your expectations for the workshop..."
               />
             </div>
@@ -190,13 +190,13 @@ export default function RegisterPage() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="flex-1 bg-black text-white font-semibold py-3 px-6 rounded-lg hover:bg-black/80 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex-1 bg-black dark:bg-white darkest:bg-white text-white dark:text-black darkest:text-black font-semibold py-3 px-6 rounded-lg hover:bg-black/80 dark:hover:bg-white/80 darkest:hover:bg-white/80 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? 'Submitting...' : 'Submit Registration'}
               </button>
               <a
                 href="/"
-                className="flex-1 border border-black/20 text-black font-semibold py-3 px-6 rounded-lg hover:border-black/40 transition-colors text-center"
+                className="flex-1 border border-black/20 dark:border-[#40444b] darkest:border-white/20 text-black dark:text-white darkest:text-white font-semibold py-3 px-6 rounded-lg hover:border-black/40 dark:hover:border-white/40 darkest:hover:border-white/40 transition-colors text-center"
               >
                 Cancel
               </a>

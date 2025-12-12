@@ -1,20 +1,7 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #000000;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-inter);
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-}
+@variant dark (.dark &);
+@variant darkest (.darkest &);
 
 /* Scroll reveal animations */
 .reveal {
