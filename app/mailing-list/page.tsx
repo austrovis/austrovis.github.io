@@ -134,7 +134,7 @@ function SubscribeForm() {
       
       <a
         href="/"
-        className="inline-flex items-center gap-2 px-6 py-3 border-2 border-black/10 font-semibold rounded-lg hover:border-black/30 hover:bg-black/5 transition-all"
+        className="inline-flex items-center gap-2 px-6 py-3 border-2 border-black/10 dark:border-[#40444b] darkest:border-white/20 font-semibold rounded-lg hover:border-black/30 dark:hover:border-[#b9bbbe] darkest:hover:border-white/50 hover:bg-black/5 dark:hover:bg-white/5 darkest:hover:bg-white/10 transition-all"
       >
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
