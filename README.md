@@ -194,7 +194,7 @@ Set the same variables as GitHub repository secrets. They will be embedded into 
 
 ## Related Repositories
 
-- [austrovis-netlify-functions](https://github.com/austrovis/austrovis-netlify-function) - Serverless backend functions
+- [austrovis-serverless](https://github.com/austrovis/austrovis-serverless) - Serverless backend functions (private)
 
 ## License
 
