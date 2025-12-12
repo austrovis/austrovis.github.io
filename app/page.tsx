@@ -24,10 +24,10 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center animate-slide-up" style={{ animationDelay: '0.2s' }}>
             <a
-              href="/register"
+              href="#newsletter"
               className="px-6 py-2.5 bg-black text-white font-medium rounded-md hover:bg-black/80 hover:scale-105 transition-all text-sm"
             >
-              Register Now
+              Stay Updated
             </a>
             <a
               href="#events"
@@ -111,9 +111,11 @@ export default function Home() {
       </section>
 
       {/* Newsletter Signup */}
-      <ScrollReveal>
-        <NewsletterSignup />
-      </ScrollReveal>
+      <section id="newsletter">
+        <ScrollReveal>
+          <NewsletterSignup />
+        </ScrollReveal>
+      </section>
     </>
   );
 }
