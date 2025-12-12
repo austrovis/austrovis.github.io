@@ -9,6 +9,7 @@ export default function RegisterPage() {
 
   const [formData, setFormData] = useState({
     name: '',
+    isPresenting: false,
     talkTitle: '',
     description: '',
     expectations: '',
@@ -32,7 +33,11 @@ export default function RegisterPage() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          ...formData,
+          name: formData.name,
+          isPresenting: formData.isPresenting ? 'Yes' : 'No',
+          talkTitle: formData.talkTitle,
+          description: formData.description,
+          expectations: formData.expectations,
           eventId: nextEvent?.id,
           eventTitle: nextEvent?.title,
           eventDate: nextEvent?.date.toISOString(),
@@ -49,6 +54,7 @@ export default function RegisterPage() {
       setSubmitted(true);
       setFormData({
         name: '',
+        isPresenting: false,
         talkTitle: '',
         description: '',
         expectations: '',
@@ -66,6 +72,13 @@ export default function RegisterPage() {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      isPresenting: e.target.checked,
     });
   };
 
@@ -125,7 +138,7 @@ export default function RegisterPage() {
           <form onSubmit={handleSubmit} className="border border-black/10 rounded-lg p-8">
             <div className="mb-6">
               <label htmlFor="name" className="block text-sm font-semibold text-black mb-2">
-                Name (Presenter) <span className="text-red-500">*</span>
+                Name <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
@@ -140,36 +153,54 @@ export default function RegisterPage() {
             </div>
 
             <div className="mb-6">
-              <label htmlFor="talkTitle" className="block text-sm font-semibold text-black mb-2">
-                Talk Title <span className="text-red-500">*</span>
+              <label className="flex items-center gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={formData.isPresenting}
+                  onChange={handleCheckboxChange}
+                  className="w-5 h-5 rounded border-black/20 text-black focus:ring-2 focus:ring-black cursor-pointer"
+                />
+                <span className="text-sm font-semibold text-black">
+                  I am presenting a talk
+                </span>
               </label>
-              <input
-                type="text"
-                id="talkTitle"
-                name="talkTitle"
-                required
-                value={formData.talkTitle}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-black/20 rounded-lg focus:ring-2 focus:ring-black focus:border-black outline-none transition"
-                placeholder="Title of your presentation"
-              />
             </div>
 
-            <div className="mb-6">
-              <label htmlFor="description" className="block text-sm font-semibold text-black mb-2">
-                Short Description <span className="text-red-500">*</span>
-              </label>
-              <textarea
-                id="description"
-                name="description"
-                required
-                value={formData.description}
-                onChange={handleChange}
-                rows={4}
-                className="w-full px-4 py-2 border border-black/20 rounded-lg focus:ring-2 focus:ring-black focus:border-black outline-none transition resize-none"
-                placeholder="Brief description of your talk (200-300 words)"
-              />
-            </div>
+            {formData.isPresenting && (
+              <>
+                <div className="mb-6">
+                  <label htmlFor="talkTitle" className="block text-sm font-semibold text-black mb-2">
+                    Talk Title <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="talkTitle"
+                    name="talkTitle"
+                    required={formData.isPresenting}
+                    value={formData.talkTitle}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 border border-black/20 rounded-lg focus:ring-2 focus:ring-black focus:border-black outline-none transition"
+                    placeholder="Title of your presentation"
+                  />
+                </div>
+
+                <div className="mb-6">
+                  <label htmlFor="description" className="block text-sm font-semibold text-black mb-2">
+                    Short Description <span className="text-red-500">*</span>
+                  </label>
+                  <textarea
+                    id="description"
+                    name="description"
+                    required={formData.isPresenting}
+                    value={formData.description}
+                    onChange={handleChange}
+                    rows={4}
+                    className="w-full px-4 py-2 border border-black/20 rounded-lg focus:ring-2 focus:ring-black focus:border-black outline-none transition resize-none"
+                    placeholder="Brief description of your talk (200-300 words)"
+                  />
+                </div>
+              </>
+            )}
 
             <div className="mb-8">
               <label htmlFor="expectations" className="block text-sm font-semibold text-black mb-2">
