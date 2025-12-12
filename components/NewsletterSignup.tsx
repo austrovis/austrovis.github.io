@@ -43,6 +43,11 @@ export default function NewsletterSignup() {
         <p className="text-white/70 dark:text-[#b9bbbe] darkest:text-white/70 mb-6 text-base">
           Join our mailing list to receive updates about upcoming workshops and events.
         </p>
+        <p className="text-white/60 mb-6 text-sm">
+          <a href="/mailing-list" className="underline hover:text-white/80 transition-colors">
+            Learn more about the mailing list
+          </a>
+        </p>
         
         {status === 'success' && (
           <div className="mb-6 p-4 bg-green-500/20 border border-green-500/50 rounded-lg">

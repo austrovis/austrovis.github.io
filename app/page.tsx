@@ -25,9 +25,9 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-3 justify-center animate-slide-up" style={{ animationDelay: '0.2s' }}>
             <a
               href="/register"
-              className="px-6 py-2.5 bg-black dark:bg-white darkest:bg-white text-white dark:text-black darkest:text-black font-medium rounded-md hover:bg-black/80 dark:hover:bg-white/90 darkest:hover:bg-white/90 hover:scale-105 transition-all text-sm"
+              className="px-6 py-2.5 border border-black/20 dark:border-white/20 darkest:border-white/20 font-medium rounded-md hover:border-black/40 dark:hover:border-white/40 darkest:hover:border-white/40 hover:scale-105 transition-all text-sm text-black dark:text-white darkest:text-white"
             >
-              Register Now
+              Stay Updated
             </a>
             <a
               href="#events"
@@ -111,9 +111,11 @@ export default function Home() {
       </section>
 
       {/* Newsletter Signup */}
-      <ScrollReveal>
-        <NewsletterSignup />
-      </ScrollReveal>
+      <section id="newsletter">
+        <ScrollReveal>
+          <NewsletterSignup />
+        </ScrollReveal>
+      </section>
     </>
   );
 }
