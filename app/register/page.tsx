@@ -137,8 +137,8 @@ export default function RegisterPage() {
         ) : (
           <form onSubmit={handleSubmit} className="border border-black/10 dark:border-[#40444b] darkest:border-white/20 rounded-lg p-8 bg-white dark:bg-[#2f3136] darkest:bg-black">
             <div className="mb-6">
-              <label htmlFor="name" className="block text-sm font-semibold text-black dark:text-white darkest:text-white mb-2">
-                Name (Presenter) <span className="text-red-500">*</span>
+              <label htmlFor="name" className="block text-sm font-semibold text-black mb-2">
+                Name <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
@@ -153,36 +153,54 @@ export default function RegisterPage() {
             </div>
 
             <div className="mb-6">
-              <label htmlFor="talkTitle" className="block text-sm font-semibold text-black dark:text-white darkest:text-white mb-2">
-                Talk Title <span className="text-red-500">*</span>
+              <label className="flex items-center gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={formData.isPresenting}
+                  onChange={handleCheckboxChange}
+                  className="w-5 h-5 rounded border-black/20 text-black focus:ring-2 focus:ring-black cursor-pointer"
+                />
+                <span className="text-sm font-semibold text-black">
+                  I am presenting a talk
+                </span>
               </label>
-              <input
-                type="text"
-                id="talkTitle"
-                name="talkTitle"
-                required
-                value={formData.talkTitle}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-black/20 dark:border-[#40444b] darkest:border-white/20 rounded-lg focus:ring-2 focus:ring-black dark:focus:ring-white darkest:focus:ring-white focus:border-black dark:focus:border-white darkest:focus:border-white outline-none transition bg-white dark:bg-[#1e1f22] darkest:bg-[#0a0a0a] text-black dark:text-white darkest:text-white placeholder:text-black/40 dark:placeholder:text-[#72767d] darkest:placeholder:text-white/40"
-                placeholder="Title of your presentation"
-              />
             </div>
 
-            <div className="mb-6">
-              <label htmlFor="description" className="block text-sm font-semibold text-black dark:text-white darkest:text-white mb-2">
-                Short Description <span className="text-red-500">*</span>
-              </label>
-              <textarea
-                id="description"
-                name="description"
-                required
-                value={formData.description}
-                onChange={handleChange}
-                rows={4}
-                className="w-full px-4 py-2 border border-black/20 dark:border-[#40444b] darkest:border-white/20 rounded-lg focus:ring-2 focus:ring-black dark:focus:ring-white darkest:focus:ring-white focus:border-black dark:focus:border-white darkest:focus:border-white outline-none transition resize-none bg-white dark:bg-[#1e1f22] darkest:bg-[#0a0a0a] text-black dark:text-white darkest:text-white placeholder:text-black/40 dark:placeholder:text-[#72767d] darkest:placeholder:text-white/40"
-                placeholder="Brief description of your talk (200-300 words)"
-              />
-            </div>
+            {formData.isPresenting && (
+              <>
+                <div className="mb-6">
+                  <label htmlFor="talkTitle" className="block text-sm font-semibold text-black mb-2">
+                    Talk Title <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="talkTitle"
+                    name="talkTitle"
+                    required={formData.isPresenting}
+                    value={formData.talkTitle}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 border border-black/20 rounded-lg focus:ring-2 focus:ring-black focus:border-black outline-none transition"
+                    placeholder="Title of your presentation"
+                  />
+                </div>
+
+                <div className="mb-6">
+                  <label htmlFor="description" className="block text-sm font-semibold text-black mb-2">
+                    Short Description <span className="text-red-500">*</span>
+                  </label>
+                  <textarea
+                    id="description"
+                    name="description"
+                    required={formData.isPresenting}
+                    value={formData.description}
+                    onChange={handleChange}
+                    rows={4}
+                    className="w-full px-4 py-2 border border-black/20 rounded-lg focus:ring-2 focus:ring-black focus:border-black outline-none transition resize-none"
+                    placeholder="Brief description of your talk (200-300 words)"
+                  />
+                </div>
+              </>
+            )}
 
             <div className="mb-8">
               <label htmlFor="expectations" className="block text-sm font-semibold text-black dark:text-white darkest:text-white mb-2">
