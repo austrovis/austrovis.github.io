@@ -69,11 +69,11 @@ export const events: Event[] = [
   {
     id: '6',
     title: '6th Edition AustroVis Workshop',
-    date: new Date('2026-02-01'),
-    location: 'TBD',
-    university: 'TBD',
+    date: new Date('2026-02-02'),
+    location: 'Vienna, Austria',
+    university: 'TU Wien',
     description: 'The sixth edition of the AustroVis Workshop.',
-    speakers: ['TBA'],
+    speakers: ['Velitchko Filipov'],
     materials: {
       slides: '',
       recording: '',
