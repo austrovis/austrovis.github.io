@@ -15,7 +15,7 @@ A modern, minimal website for the AustroVis workshop series - focused on visuali
 This project uses a split architecture:
 
 - **Frontend:** Static Next.js site hosted on GitHub Pages
-- **Backend:** Serverless functions on Netlify (separate repo: [austrovis-netlify-functions](https://github.com/austrovis/austrovis-netlify-function))
+- **Backend:** Serverless functions on Netlify (separate repo: [austrovis-serverless](https://github.com/austrovis/austrovis-serverless))
 
 The static site calls Netlify functions for form submissions, which then forward data to:
 - Google Sheets (for event registrations)
