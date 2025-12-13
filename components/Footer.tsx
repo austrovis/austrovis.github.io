@@ -3,7 +3,7 @@
 export default function Footer() {
   return (
     <footer className="border-t mt-16 border-black/10 dark:border-[#40444b] darkest:border-white/20">
-      <div className="max-w-7xl mx-auto px-6 py-10">
+      <div className="max-w-7xl mx-auto px-6 py-10 pb-24 md:pb-10">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
           <div>
             <h3 className="text-xl font-bold mb-2 text-black dark:text-white darkest:text-white">AustroVis</h3>
