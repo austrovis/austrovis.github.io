@@ -274,8 +274,8 @@ export default function MailingListPage() {
                   <p className="text-black dark:text-white darkest:text-white font-medium mb-1">Email Method</p>
                   <p className="text-black/70 dark:text-[#b9bbbe] darkest:text-white/70">
                     Send an email to{' '}
-                    <a href="mailto:austrovis-request@cvast.tuwien.ac.at?subject=Unsubscribe" className="text-black dark:text-white darkest:text-white underline">
-                      austrovis-request@cvast.tuwien.ac.at
+                    <a href="mailto:austrovis-owner@cvast.tuwien.ac.at?subject=Unsubscribe" className="text-black dark:text-white darkest:text-white underline">
+                      austrovis-owner@cvast.tuwien.ac.at
                     </a>
                     {' '}with the subject line &quot;Unsubscribe&quot; from the address you want to unsubscribe (the message body can be empty)
                   </p>
@@ -306,8 +306,8 @@ export default function MailingListPage() {
                   <p className="text-black dark:text-white darkest:text-white font-medium mb-1">Contact the Owner</p>
                   <p className="text-black/70 dark:text-[#b9bbbe] darkest:text-white/70">
                     Email{' '}
-                    <a href="mailto:austrovis-request@cvast.tuwien.ac.at" className="text-black dark:text-white darkest:text-white underline">
-                      austrovis-request@cvast.tuwien.ac.at
+                    <a href="mailto:austrovis-owner@cvast.tuwien.ac.at" className="text-black dark:text-white darkest:text-white underline">
+                      austrovis-owner@cvast.tuwien.ac.at
                     </a>
                     {' '}if you need assistance unsubscribing
                   </p>
