@@ -123,7 +123,7 @@ The newsletter signup forwards to a Mailman mailing list:
 
 ### Netlify Functions
 
-The backend functions are in a separate repository: [austrovis-netlify-functions](https://github.com/austrovis/austrovis-netlify-function)
+The backend functions are in a separate repository: [austrovis-serverless](https://github.com/austrovis/austrovis-serverless)
 
 These functions handle:
 - Newsletter subscription forwarding
