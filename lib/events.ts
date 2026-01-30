@@ -79,6 +79,19 @@ export const events: Event[] = [
       recording: '',
     },
   },
+  {
+    id: '7',
+    title: '7th Edition AustroVis Workshop',
+    date: new Date('2026-00-00'),
+    location: '',
+    university: '',
+    description: 'The seventh edition of the AustroVis Workshop.',
+    speakers: [''],
+    materials: {
+      slides: '',
+      recording: '',
+    },
+  },
 ];
 
 export function getPastEvents(): Event[] {
