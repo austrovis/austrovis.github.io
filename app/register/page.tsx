@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { getUpcomingEvents } from '@/lib/events';
 
+const REGISTRATION_OPEN = false; // Toggle this to open/close registration
+
 export default function RegisterPage() {
   const upcomingEvents = getUpcomingEvents();
   const nextEvent = upcomingEvents[0];
@@ -133,19 +135,25 @@ export default function RegisterPage() {
     });
   };
 
-  if (!nextEvent) {
-    return (
+  // Registration is locked for this edition
+  if(!REGISTRATION_OPEN) {
+      return (
       <main className="min-h-screen bg-white dark:bg-[#36393f] darkest:bg-black pt-32 pb-16 px-4">
         <div className="max-w-2xl mx-auto text-center">
-          <h1 className="text-4xl font-bold text-black dark:text-white darkest:text-white mb-4">Registration</h1>
-          <p className="text-lg text-black/60 dark:text-[#b9bbbe] darkest:text-white/60">
-            No upcoming events are scheduled at the moment. Please check back later.
-          </p>
+          <h1 className="text-4xl font-bold text-black dark:text-white darkest:text-white mb-4">Registration Closed</h1>
+          <div className="bg-black/5 dark:bg-[#2f3136] darkest:bg-black border border-black/10 dark:border-[#40444b] darkest:border-white/20 rounded-lg p-8 mb-8">
+            <p className="text-lg text-black dark:text-white darkest:text-white mb-2">
+              Registration for this edition of the workshop is now <span className="font-semibold">closed</span>.
+            </p>
+            <p className="text-black/70 dark:text-[#b9bbbe] darkest:text-white/70">
+              Please wait for an announcement for the next one!
+            </p>
+          </div>
         </div>
       </main>
-    );
+    )
   }
-
+  else {
   return (
     <main className="min-h-screen bg-white dark:bg-[#36393f] darkest:bg-black pt-32 pb-16 px-4">
       <div className="max-w-2xl mx-auto">
@@ -370,4 +378,5 @@ export default function RegisterPage() {
       </div>
     </main>
   );
+}
 }
