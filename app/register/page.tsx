@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { getUpcomingEvents } from '@/lib/events';
 
 const REGISTRATION_OPEN = false; // Toggle this to open/close registration
@@ -89,7 +90,7 @@ export default function RegisterPage() {
           expectations: formData.expectations,
           eventId: nextEvent?.id,
           eventTitle: nextEvent?.title,
-          eventDate: nextEvent?.date.toISOString(),
+          eventDate: nextEvent?.date ? nextEvent.date.toISOString() : null,
           submittedAt: new Date().toISOString(),
           isUpdate: isEditing, // Flag to indicate if this is an update
         }),
@@ -161,11 +162,11 @@ export default function RegisterPage() {
           <h1 className="text-4xl font-bold text-black dark:text-white darkest:text-white mb-4">Register for the {nextEvent.title}</h1>
           <div className="bg-black/5 dark:bg-[#2f3136] darkest:bg-black border border-black/10 dark:border-[#40444b] darkest:border-white/20 rounded-lg p-6 mb-8">
             <p className="text-lg text-black dark:text-white darkest:text-white mb-2">
-              <span className="font-semibold">Date:</span> {nextEvent.date.toLocaleDateString('en-US', { 
+              <span className="font-semibold">Date:</span> {nextEvent.date ? nextEvent.date.toLocaleDateString('en-US', { 
                 year: 'numeric', 
                 month: 'long', 
                 day: 'numeric' 
-              })}
+              }) : 'TBD'}
             </p>
             <p className="text-lg text-black dark:text-white darkest:text-white mb-2">
               <span className="font-semibold">Location:</span> {nextEvent.university}, {nextEvent.location}
@@ -301,7 +302,7 @@ export default function RegisterPage() {
                   className="w-5 h-5 cursor-pointer"
                 />
                 <span className="text-sm font-semibold text-black dark:text-white darkest:text-white">
-                  I'm presenting a talk <span className="text-red-500">*</span>
+                  I&apos;m presenting a talk <span className="text-red-500">*</span>
                 </span>
               </label>
             </div>
@@ -365,12 +366,12 @@ export default function RegisterPage() {
               >
                 {isSubmitting ? 'Submitting...' : isEditing ? 'Update Registration' : 'Submit Registration'}
               </button>
-              <a
+              <Link
                 href="/"
                 className="flex-1 border border-black/20 dark:border-[#40444b] darkest:border-white/20 text-black dark:text-white darkest:text-white font-semibold py-3 px-6 rounded-lg hover:border-black/40 dark:hover:border-white/40 darkest:hover:border-white/40 transition-colors text-center"
               >
                 Cancel
-              </a>
+              </Link>
             </div>
           </form>
           </>

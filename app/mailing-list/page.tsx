@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 
 function SubscribeForm() {
   const [email, setEmail] = useState('');
@@ -72,7 +73,7 @@ function SubscribeForm() {
             </div>
           </div>
         </div>
-        <a
+        <Link
           href="/"
           className="inline-flex items-center gap-2 px-6 py-3 border-2 border-black/10 dark:border-[#40444b] darkest:border-white/20 font-semibold rounded-lg hover:border-black/30 dark:hover:border-white/40 darkest:hover:border-white/40 hover:bg-black/5 dark:hover:bg-[#40444b] darkest:hover:bg-white/10 transition-all text-black dark:text-white darkest:text-white"
         >
@@ -80,7 +81,7 @@ function SubscribeForm() {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
           </svg>
           Back to Home
-        </a>
+        </Link>
       </div>
     );
   }
@@ -132,7 +133,7 @@ function SubscribeForm() {
         <div className="flex-1 h-px bg-black/10 dark:bg-white/20 darkest:bg-white/20"></div>
       </div>
       
-      <a
+      <Link
         href="/"
         className="inline-flex items-center gap-2 px-6 py-3 border-2 border-black/10 dark:border-[#40444b] darkest:border-white/20 font-semibold rounded-lg hover:border-black/30 dark:hover:border-[#b9bbbe] darkest:hover:border-white/50 hover:bg-black/5 dark:hover:bg-white/5 darkest:hover:bg-white/10 transition-all"
       >
@@ -140,7 +141,7 @@ function SubscribeForm() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
         </svg>
         Back to Home
-      </a>
+      </Link>
     </div>
   );
 }
@@ -210,7 +211,7 @@ export default function MailingListPage() {
                 <div>
                   <h3 className="font-semibold text-black dark:text-white darkest:text-white mb-1">Submit Your Email</h3>
                   <p className="text-black/70 dark:text-[#b9bbbe] darkest:text-white/70">
-                    Use the subscription form on our <a href="/#newsletter" className="text-black dark:text-white darkest:text-white underline">homepage</a> or 
+                    Use the subscription form on our <Link href="/#newsletter" className="text-black dark:text-white darkest:text-white underline">homepage</Link> or 
                     send an email directly to <a href="mailto:austrovis-request@cvast.tuwien.ac.at?subject=Subscribe" className="text-black dark:text-white darkest:text-white underline">austrovis-request@cvast.tuwien.ac.at</a> with 
                     the subject line &quot;Subscribe&quot; (the message body can be empty)
                   </p>
@@ -247,12 +248,12 @@ export default function MailingListPage() {
             </div>
 
             <div className="mt-6 pt-6 border-t border-black/10 dark:border-[#40444b] darkest:border-white/20">
-              <a
+              <Link
                 href="/#newsletter"
                 className="inline-block px-6 py-3 bg-black dark:bg-white darkest:bg-white text-white dark:text-black darkest:text-black font-semibold rounded-md hover:bg-black/80 dark:hover:bg-white/80 darkest:hover:bg-white/80 transition-colors"
               >
                 Subscribe Now
-              </a>
+              </Link>
             </div>
           </div>
         </section>

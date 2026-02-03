@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 export default function Header() {
@@ -30,7 +31,7 @@ export default function Header() {
           href="/" 
           className="flex items-center gap-2 text-lg font-bold tracking-tight hover:opacity-70 transition-opacity text-black dark:text-white darkest:text-white"
         >
-            <img src="/logo.svg" alt="AustroVis Logo" width="28" height="28" className="inline-block" />
+            <Image src="/logo.svg" alt="AustroVis Logo" width={28} height={28} className="inline-block w-7 h-7" />
           AustroVis
         </Link>
         <div className="w-px h-6 bg-black/10 dark:bg-white/10 darkest:bg-white/10" />

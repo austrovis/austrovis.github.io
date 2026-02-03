@@ -6,7 +6,8 @@ interface EventCardProps {
 }
 
 export default function EventCard({ event, isPast = false }: EventCardProps) {
-  const formatDate = (date: Date) => {
+  const formatDate = (date?: Date | null) => {
+    if (!date) return 'TBD';
     return new Intl.DateTimeFormat('en-US', {
       year: 'numeric',
       month: 'long',
