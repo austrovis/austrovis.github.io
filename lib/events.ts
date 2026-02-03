@@ -82,7 +82,8 @@ export const events: Event[] = [
   {
     id: '7',
     title: '7th Edition AustroVis Workshop',
-    date: new Date('2026-00-00'),
+    // date intentionally omitted (TBD)
+    tbd: true,
     location: '',
     university: '',
     description: 'The seventh edition of the AustroVis Workshop.',
@@ -96,10 +97,24 @@ export const events: Event[] = [
 
 export function getPastEvents(): Event[] {
   const now = new Date();
-  return events.filter(event => event.date < now).sort((a, b) => b.date.getTime() - a.date.getTime());
+  return events
+    .filter(event => event.date instanceof Date && !isNaN(event.date.getTime()) && event.date < now)
+    .sort((a, b) => b.date!.getTime() - a.date!.getTime());
 }
 
 export function getUpcomingEvents(): Event[] {
   const now = new Date();
-  return events.filter(event => event.date >= now).sort((a, b) => a.date.getTime() - b.date.getTime());
+  return events
+    .filter(event => {
+      if (event.date instanceof Date && !isNaN(event.date.getTime())) {
+        return event.date >= now;
+      }
+      // Include events with no/invalid date or explicitly marked as TBD
+      return event.tbd === true || event.date == null;
+    })
+    .sort((a, b) => {
+      const aTime = a.date instanceof Date && !isNaN(a.date.getTime()) ? a.date.getTime() : Number.POSITIVE_INFINITY;
+      const bTime = b.date instanceof Date && !isNaN(b.date.getTime()) ? b.date.getTime() : Number.POSITIVE_INFINITY;
+      return aTime - bTime;
+    });
 }

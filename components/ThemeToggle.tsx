@@ -5,20 +5,15 @@ import { useState, useEffect } from 'react';
 type Theme = 'light' | 'dark' | 'darkest';
 
 export default function ThemeToggle() {
-  const [theme, setThemeState] = useState<Theme>('light');
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    const savedTheme = localStorage.getItem('theme') as Theme | null;
-    if (savedTheme && ['light', 'dark', 'darkest'].includes(savedTheme)) {
-      setThemeState(savedTheme);
-      applyTheme(savedTheme);
-    } else {
-      // Ensure clean state on first load
-      document.documentElement.classList.remove('dark', 'darkest');
+  const [theme, setThemeState] = useState<Theme>(() => {
+    if (typeof window === 'undefined') return 'light';
+    const saved = localStorage.getItem('theme') as Theme | null;
+    if (saved && ['light', 'dark', 'darkest'].includes(saved)) {
+      return saved;
     }
-  }, []);
+    return 'light';
+  });
+  const [mounted, setMounted] = useState(false);
 
   const applyTheme = (newTheme: Theme) => {
     document.documentElement.classList.remove('dark', 'darkest');
@@ -29,14 +24,31 @@ export default function ThemeToggle() {
     }
   };
 
+  // Sets the theme state, persists selection, and applies it immediately.
   const setTheme = (newTheme: Theme) => {
     setThemeState(newTheme);
-    localStorage.setItem('theme', newTheme);
+    try {
+      localStorage.setItem('theme', newTheme);
+    } catch (e) {
+      // ignore localStorage errors in strict environments
+    }
     applyTheme(newTheme);
   };
 
-  if (!mounted) return null;
+  useEffect(() => {
+    // Apply the current theme on mount and whenever it changes
+    applyTheme(theme);
+  }, [theme]);
 
+  useEffect(() => {
+    // We intentionally set mounted in an effect to avoid hydration mismatches when
+    // the saved theme differs between server-render and client. This is a local
+    // exception: setting state here is safe and avoids visual flicker.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
   return (
     <div className="fixed bottom-6 right-6 z-50">
       <div className="bg-white dark:bg-[#2f3136] darkest:bg-black border-2 border-black/10 dark:border-[#202225] darkest:border-white/10 rounded-lg shadow-lg p-2 flex gap-2">
