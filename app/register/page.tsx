@@ -144,8 +144,8 @@ export default function RegisterPage() {
     });
   };
 
-  // Registration is locked for this edition
-  if(!REGISTRATION_OPEN) {
+  // Registration is locked for this edition, or there is no upcoming event to register for
+  if(!REGISTRATION_OPEN || !nextEvent) {
       return (
       <main className="min-h-screen bg-white dark:bg-[#36393f] darkest:bg-black pt-32 pb-16 px-4">
         <div className="max-w-2xl mx-auto text-center">

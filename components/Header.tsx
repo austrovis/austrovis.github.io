@@ -16,9 +16,9 @@ export default function Header() {
   }, []);
 
   return (
-    <header 
-      className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 ${
-        scrolled ? 'w-auto' : 'w-auto'
+    <header
+      className={`fixed top-6 left-0 right-0 mx-auto w-fit max-w-[calc(100vw-2rem)] z-50 transition-all duration-300 ${
+        scrolled ? 'w-fit' : 'w-fit'
       }`}
     >
       <div 
@@ -32,18 +32,18 @@ export default function Header() {
           className="flex items-center gap-2 text-lg font-bold tracking-tight hover:opacity-70 transition-opacity text-black dark:text-white darkest:text-white"
         >
             <Image src="/logo.svg" alt="AustroVis Logo" width={28} height={28} className="inline-block w-7 h-7" />
-          AustroVis
+          <span className="hidden sm:inline">AustroVis</span>
         </Link>
         <div className="w-px h-6 bg-black/10 dark:bg-white/10 darkest:bg-white/10" />
         <Link
           href="/register"
-          className="text-sm font-medium transition-colors text-black/70 hover:text-black dark:text-[#b9bbbe] dark:hover:text-white darkest:text-white/70 darkest:hover:text-white"
+          className="text-sm font-medium transition-colors text-black/70 hover:text-black dark:text-[#b9bbbe] dark:hover:text-white darkest:text-white/70 darkest:hover:text-white whitespace-nowrap"
         >
           Register
         </Link>
         <Link
           href="/mailing-list"
-          className="text-sm font-medium transition-colors text-black/70 hover:text-black dark:text-[#b9bbbe] dark:hover:text-white darkest:text-white/70 darkest:hover:text-white"
+          className="text-sm font-medium transition-colors text-black/70 hover:text-black dark:text-[#b9bbbe] dark:hover:text-white darkest:text-white/70 darkest:hover:text-white whitespace-nowrap"
         >
           Mailing List
         </Link>
