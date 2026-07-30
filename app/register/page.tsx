@@ -183,6 +183,10 @@ export default function RegisterPage() {
           </div>
         </div>
 
+        <p className="text-center text-sm text-black/60 dark:text-[#b9bbbe] darkest:text-white/60 mb-8">
+          Just want updates instead of attending? <Link href="/mailing-list" className="underline hover:text-black dark:hover:text-white darkest:hover:text-white">Join the mailing list</Link> instead.
+        </p>
+
         {error && (
           <div className={`${isDuplicate ? 'bg-orange-50 dark:bg-yellow-900/30 darkest:bg-yellow-800/20 border-orange-300 dark:border-yellow-600 darkest:border-yellow-500' : 'bg-red-50 dark:bg-red-900/20 darkest:bg-red-900/30 border-red-200 dark:border-red-700 darkest:border-red-600'} border rounded-lg p-4 mb-6 text-center`}>
             <p className={isDuplicate ? 'text-orange-800 dark:text-yellow-400 darkest:text-yellow-300' : 'text-red-800 dark:text-red-300 darkest:text-red-200'}>{error}</p>
