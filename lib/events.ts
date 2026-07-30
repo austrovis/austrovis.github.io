@@ -82,12 +82,11 @@ export const events: Event[] = [
   {
     id: '7',
     title: '7th Edition AustroVis Workshop',
-    // date intentionally omitted (TBD)
-    tbd: true,
-    location: '',
-    university: '',
-    description: 'The seventh edition of the AustroVis Workshop.',
-    speakers: [''],
+    date: new Date('2026-09-29'),
+    location: 'Linz, Austria',
+    university: 'JKU Linz',
+    description: 'The seventh edition of the AustroVis Workshop, hosted at JKU Linz.',
+    speakers: ['Marc Streit', 'Andreas Hinterreiter', 'Mandy Keck'],
     materials: {
       slides: '',
       recording: '',
