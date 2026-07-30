@@ -35,7 +35,20 @@ export default function Header() {
           AustroVis
         </Link>
         <div className="w-px h-6 bg-black/10 dark:bg-white/10 darkest:bg-white/10" />
-        <a 
+        <Link
+          href="/register"
+          className="text-sm font-medium transition-colors text-black/70 hover:text-black dark:text-[#b9bbbe] dark:hover:text-white darkest:text-white/70 darkest:hover:text-white"
+        >
+          Register
+        </Link>
+        <Link
+          href="/mailing-list"
+          className="text-sm font-medium transition-colors text-black/70 hover:text-black dark:text-[#b9bbbe] dark:hover:text-white darkest:text-white/70 darkest:hover:text-white"
+        >
+          Mailing List
+        </Link>
+        <div className="w-px h-6 bg-black/10 dark:bg-white/10 darkest:bg-white/10" />
+        <a
           href="https://discord.gg/rbkSzsxP47" 
           target="_blank" 
           rel="noopener noreferrer"
