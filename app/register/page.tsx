@@ -284,7 +284,7 @@ export default function RegisterPage() {
             <form onSubmit={handleSubmit} className="border border-black/10 dark:border-[#40444b] darkest:border-white/20 rounded-lg p-8 bg-white dark:bg-[#2f3136] darkest:bg-black">
             <div className="mb-6">
               <label htmlFor="name" className="block text-sm font-semibold text-black dark:text-white darkest:text-white mb-2">
-                Name (Presenter) <span className="text-red-500">*</span>
+                Name <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
@@ -337,7 +337,7 @@ export default function RegisterPage() {
                   className="w-5 h-5 cursor-pointer"
                 />
                 <span className="text-sm font-semibold text-black dark:text-white darkest:text-white">
-                  I&apos;m presenting a talk <span className="text-red-500">*</span>
+                  I&apos;m presenting a talk
                 </span>
               </label>
             </div>
