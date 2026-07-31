@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { getUpcomingEvents } from '@/lib/events';
 
-const REGISTRATION_OPEN = false; // Toggle this to open/close registration
+const REGISTRATION_OPEN = true; // Toggle this to open/close registration
 
 export default function RegisterPage() {
   const upcomingEvents = getUpcomingEvents();
@@ -12,8 +12,10 @@ export default function RegisterPage() {
 
   const [formData, setFormData] = useState({
     name: '',
+    affiliation: '',
     isPresenting: false,
     talkTitle: '',
+    talkType: '',
     description: '',
     expectations: '',
   });
@@ -51,8 +53,10 @@ export default function RegisterPage() {
         // Load the data into the form
         setFormData({
           name: result.data.name || '',
+          affiliation: result.data.affiliation || '',
           isPresenting: result.data.isPresenting === 'Yes',
           talkTitle: result.data.talkTitle || '',
+          talkType: result.data.talkType || '',
           description: result.data.description || '',
           expectations: result.data.expectations || '',
         });
@@ -84,8 +88,10 @@ export default function RegisterPage() {
         },
         body: JSON.stringify({
           name: formData.name,
+          affiliation: formData.affiliation,
           isPresenting: formData.isPresenting ? 'Yes' : 'No',
           talkTitle: formData.talkTitle,
+          talkType: formData.talkType,
           description: formData.description,
           expectations: formData.expectations,
           eventId: nextEvent?.id,
@@ -113,8 +119,10 @@ export default function RegisterPage() {
       setSubmitted(true);
       setFormData({
         name: '',
+        affiliation: '',
         isPresenting: false,
         talkTitle: '',
+        talkType: '',
         description: '',
         expectations: '',
       });
@@ -136,8 +144,8 @@ export default function RegisterPage() {
     });
   };
 
-  // Registration is locked for this edition
-  if(!REGISTRATION_OPEN) {
+  // Registration is locked for this edition, or there is no upcoming event to register for
+  if(!REGISTRATION_OPEN || !nextEvent) {
       return (
       <main className="min-h-screen bg-white dark:bg-[#36393f] darkest:bg-black pt-32 pb-16 px-4">
         <div className="max-w-2xl mx-auto text-center">
@@ -171,9 +179,18 @@ export default function RegisterPage() {
             <p className="text-lg text-black dark:text-white darkest:text-white mb-2">
               <span className="font-semibold">Location:</span> {nextEvent.university}, {nextEvent.location}
             </p>
+            {nextEvent.speakers && nextEvent.speakers.length > 0 && (
+              <p className="text-lg text-black dark:text-white darkest:text-white mb-2">
+                <span className="font-semibold">Organizer{nextEvent.speakers.length > 1 ? 's' : ''}:</span> {nextEvent.speakers.join(', ')}
+              </p>
+            )}
             <p className="text-black/70 dark:text-[#b9bbbe] darkest:text-white/70">{nextEvent.description}</p>
           </div>
         </div>
+
+        <p className="text-center text-sm text-black/60 dark:text-[#b9bbbe] darkest:text-white/60 mb-8">
+          Just want updates instead of attending? <Link href="/mailing-list" className="underline hover:text-black dark:hover:text-white darkest:hover:text-white">Join the mailing list</Link> instead.
+        </p>
 
         {error && (
           <div className={`${isDuplicate ? 'bg-orange-50 dark:bg-yellow-900/30 darkest:bg-yellow-800/20 border-orange-300 dark:border-yellow-600 darkest:border-yellow-500' : 'bg-red-50 dark:bg-red-900/20 darkest:bg-red-900/30 border-red-200 dark:border-red-700 darkest:border-red-600'} border rounded-lg p-4 mb-6 text-center`}>
@@ -249,8 +266,10 @@ export default function RegisterPage() {
                     setIsEditing(false);
                     setFormData({
                       name: '',
+                      affiliation: '',
                       isPresenting: false,
                       talkTitle: '',
+                      talkType: '',
                       description: '',
                       expectations: '',
                     });
@@ -284,6 +303,21 @@ export default function RegisterPage() {
             </div>
 
             <div className="mb-6">
+              <label htmlFor="affiliation" className="block text-sm font-semibold text-black dark:text-white darkest:text-white mb-2">
+                Affiliation <span className="text-black/40 dark:text-white/40 darkest:text-white/40">(Optional)</span>
+              </label>
+              <input
+                type="text"
+                id="affiliation"
+                name="affiliation"
+                value={formData.affiliation}
+                onChange={handleChange}
+                className="w-full px-4 py-2 border border-black/20 dark:border-[#40444b] darkest:border-white/20 rounded-lg focus:ring-2 focus:ring-black dark:focus:ring-white darkest:focus:ring-white focus:border-black dark:focus:border-white darkest:focus:border-white outline-none transition bg-white dark:bg-[#40444b] darkest:bg-black text-black dark:text-white darkest:text-white"
+                placeholder="University, company, or organization"
+              />
+            </div>
+
+            <div className="mb-6">
               <label className="flex items-center gap-2 cursor-pointer">
                 <input
                   type="checkbox"
@@ -291,11 +325,12 @@ export default function RegisterPage() {
                   checked={formData.isPresenting}
                   onChange={(e) => {
                     const isChecked = e.target.checked;
-                    setFormData({ 
-                      ...formData, 
+                    setFormData({
+                      ...formData,
                       isPresenting: isChecked,
                       // Clear talk fields if unchecking
                       talkTitle: isChecked ? formData.talkTitle : '',
+                      talkType: isChecked ? formData.talkType : '',
                       description: isChecked ? formData.description : ''
                     });
                   }}
@@ -323,6 +358,44 @@ export default function RegisterPage() {
                     className="w-full px-4 py-2 border border-black/20 dark:border-[#40444b] darkest:border-white/20 rounded-lg focus:ring-2 focus:ring-black dark:focus:ring-white darkest:focus:ring-white focus:border-black dark:focus:border-white darkest:focus:border-white outline-none transition bg-white dark:bg-[#40444b] darkest:bg-black text-black dark:text-white darkest:text-white"
                     placeholder="Title of your presentation"
                   />
+                </div>
+
+                <div className="mb-6">
+                  <span className="block text-sm font-semibold text-black dark:text-white darkest:text-white mb-2">
+                    Talk Type <span className="text-red-500">*</span>
+                  </span>
+                  <div className="space-y-3">
+                    <label className="flex items-start gap-3 cursor-pointer">
+                      <input
+                        type="radio"
+                        name="talkType"
+                        value="Open / new direction"
+                        checked={formData.talkType === 'Open / new direction'}
+                        onChange={handleChange}
+                        required
+                        className="w-4 h-4 mt-1 cursor-pointer"
+                      />
+                      <span>
+                        <span className="block text-sm font-medium text-black dark:text-white darkest:text-white">Open / new direction</span>
+                        <span className="block text-xs text-black/60 dark:text-[#b9bbbe] darkest:text-white/60">Early ideas, direction feedback, or brainstorming welcome.</span>
+                      </span>
+                    </label>
+                    <label className="flex items-start gap-3 cursor-pointer">
+                      <input
+                        type="radio"
+                        name="talkType"
+                        value="Conference-ready"
+                        checked={formData.talkType === 'Conference-ready'}
+                        onChange={handleChange}
+                        required
+                        className="w-4 h-4 mt-1 cursor-pointer"
+                      />
+                      <span>
+                        <span className="block text-sm font-medium text-black dark:text-white darkest:text-white">Conference-ready</span>
+                        <span className="block text-xs text-black/60 dark:text-[#b9bbbe] darkest:text-white/60">Deeper technical or reviewer-style feedback.</span>
+                      </span>
+                    </label>
+                  </div>
                 </div>
 
                 <div className="mb-6">

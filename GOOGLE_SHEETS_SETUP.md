@@ -6,15 +6,18 @@ This guide will help you connect the registration form to a Google Sheet in your
 
 1. Go to your Google Shared Drive
 2. Create a new Google Sheet named "AustroVis Registrations" (or any name you prefer)
-3. Add the following headers in the first row:
+3. Rename the sheet's first tab to `current` — this spreadsheet holds multiple tabs (e.g. past editions), and the Apps Script always reads/writes the tab named exactly `current`. Add the following headers in its first row:
    - A1: `Timestamp`
    - B1: `Name`
-   - C1: `Talk Title`
-   - D1: `Description`
-   - E1: `Expectations`
-   - F1: `Event ID`
-   - G1: `Event Title`
-   - H1: `Event Date`
+   - C1: `Affiliation`
+   - D1: `Presenter`
+   - E1: `Talk Title`
+   - F1: `Talk Type`
+   - G1: `Description`
+   - H1: `Expectations`
+   - I1: `Event ID`
+   - J1: `Event Title`
+   - K1: `Event Date`
 
 ## Step 2: Create a Google Apps Script
 
@@ -22,37 +25,180 @@ This guide will help you connect the registration form to a Google Sheet in your
 2. Delete any existing code and paste the following:
 
 ```javascript
+// AustroVis Registration Handler
+// Reads/writes only the sheet tab named "current" — this spreadsheet
+// keeps multiple tabs (e.g. past editions), and only "current" is live.
+// Copy this entire file into the Apps Script editor, replacing everything.
+
+function getCurrentSheet() {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('current');
+  if (!sheet) {
+    throw new Error('Sheet tab "current" not found');
+  }
+  return sheet;
+}
+
+function doGet(e) {
+  try {
+    var sheet = getCurrentSheet();
+    var action = e.parameter.action;
+    var name = e.parameter.name;
+
+    if (action === 'get' && name) {
+      var data = sheet.getDataRange().getValues();
+      var headers = data[0];
+
+      var nameCol = headers.indexOf('Name');
+      var timestampCol = headers.indexOf('Timestamp');
+      var affiliationCol = headers.indexOf('Affiliation');
+      var presenterCol = headers.indexOf('Presenter');
+      var talkTitleCol = headers.indexOf('Talk Title');
+      var talkTypeCol = headers.indexOf('Talk Type');
+      var descriptionCol = headers.indexOf('Description');
+      var expectationsCol = headers.indexOf('Expectations');
+      var eventIdCol = headers.indexOf('Event ID');
+      var eventTitleCol = headers.indexOf('Event Title');
+      var eventDateCol = headers.indexOf('Event Date');
+
+      for (var i = 1; i < data.length; i++) {
+        if (data[i][nameCol] === name) {
+          var registration = {
+            success: true,
+            data: {
+              name: data[i][nameCol],
+              affiliation: data[i][affiliationCol],
+              isPresenting: data[i][presenterCol],
+              talkTitle: data[i][talkTitleCol],
+              talkType: data[i][talkTypeCol],
+              description: data[i][descriptionCol],
+              expectations: data[i][expectationsCol],
+              eventId: data[i][eventIdCol],
+              eventTitle: data[i][eventTitleCol],
+              eventDate: data[i][eventDateCol],
+              submittedAt: data[i][timestampCol]
+            }
+          };
+
+          return ContentService
+            .createTextOutput(JSON.stringify(registration))
+            .setMimeType(ContentService.MimeType.JSON);
+        }
+      }
+
+      return ContentService
+        .createTextOutput(JSON.stringify({
+          success: false,
+          error: 'No registration found with that name'
+        }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+
+    return ContentService
+      .createTextOutput(JSON.stringify({
+        success: false,
+        error: 'Invalid request'
+      }))
+      .setMimeType(ContentService.MimeType.JSON);
+
+  } catch (error) {
+    return ContentService
+      .createTextOutput(JSON.stringify({
+        success: false,
+        error: error.toString()
+      }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
 function doPost(e) {
   try {
-    // Get the active spreadsheet
-    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-    
-    // Parse the incoming data
+    var sheet = getCurrentSheet();
     var data = JSON.parse(e.postData.contents);
-    
-    // Append a new row with the data
-    sheet.appendRow([
-      data.submittedAt || new Date().toISOString(),
-      data.name || '',
-      data.talkTitle || '',
-      data.description || '',
-      data.expectations || 'N/A',
-      data.eventId || '',
-      data.eventTitle || '',
-      data.eventDate || ''
-    ]);
-    
-    // Return success response
-    return ContentService
-      .createTextOutput(JSON.stringify({ success: true }))
-      .setMimeType(ContentService.MimeType.JSON);
-      
+    var action = data.action || 'create';
+
+    if (action === 'update') {
+      var sheetData = sheet.getDataRange().getValues();
+      var headers = sheetData[0];
+      var nameCol = headers.indexOf('Name');
+
+      for (var i = 1; i < sheetData.length; i++) {
+        if (sheetData[i][nameCol] === data.name) {
+          var rowNum = i + 1;
+
+          sheet.getRange(rowNum, 1, 1, 11).setValues([[
+            data.submittedAt || new Date().toISOString(),  // Timestamp
+            data.name || '',                                // Name
+            data.affiliation || '',                         // Affiliation
+            data.isPresenting || 'No',                      // Presenter
+            data.talkTitle || '',                           // Talk Title
+            data.talkType || '',                            // Talk Type
+            data.description || '',                         // Description
+            data.expectations || '',                        // Expectations
+            data.eventId || '',                             // Event ID
+            data.eventTitle || '',                          // Event Title
+            data.eventDate || ''                             // Event Date
+          ]]);
+
+          return ContentService
+            .createTextOutput(JSON.stringify({
+              success: true,
+              message: 'Registration updated successfully'
+            }))
+            .setMimeType(ContentService.MimeType.JSON);
+        }
+      }
+
+      return ContentService
+        .createTextOutput(JSON.stringify({
+          success: false,
+          error: 'Registration not found for update'
+        }))
+        .setMimeType(ContentService.MimeType.JSON);
+
+    } else {
+      var sheetData = sheet.getDataRange().getValues();
+      var headers = sheetData[0];
+      var nameCol = headers.indexOf('Name');
+
+      for (var i = 1; i < sheetData.length; i++) {
+        if (sheetData[i][nameCol] === data.name) {
+          return ContentService
+            .createTextOutput(JSON.stringify({
+              success: false,
+              error: 'A registration with this name already exists. Please use the "Edit Existing Registration" option to update it.',
+              isDuplicate: true
+            }))
+            .setMimeType(ContentService.MimeType.JSON);
+        }
+      }
+
+      sheet.appendRow([
+        data.submittedAt || new Date().toISOString(),  // Timestamp
+        data.name || '',                                // Name
+        data.affiliation || '',                         // Affiliation
+        data.isPresenting || 'No',                      // Presenter
+        data.talkTitle || '',                           // Talk Title
+        data.talkType || '',                            // Talk Type
+        data.description || '',                         // Description
+        data.expectations || '',                        // Expectations
+        data.eventId || '',                             // Event ID
+        data.eventTitle || '',                          // Event Title
+        data.eventDate || ''                             // Event Date
+      ]);
+
+      return ContentService
+        .createTextOutput(JSON.stringify({
+          success: true,
+          message: 'Registration created successfully'
+        }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+
   } catch (error) {
-    // Return error response
     return ContentService
-      .createTextOutput(JSON.stringify({ 
-        success: false, 
-        error: error.toString() 
+      .createTextOutput(JSON.stringify({
+        success: false,
+        error: error.toString()
       }))
       .setMimeType(ContentService.MimeType.JSON);
   }

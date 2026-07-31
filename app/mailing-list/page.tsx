@@ -159,6 +159,10 @@ export default function MailingListPage() {
           </p>
         </div>
 
+        <p className="text-center text-sm text-black/60 dark:text-[#b9bbbe] darkest:text-white/60 mb-12">
+          Looking to attend a specific workshop instead? <Link href="/register" className="underline hover:text-black dark:hover:text-white darkest:hover:text-white">Go to workshop registration</Link>.
+        </p>
+
         {/* Description */}
         <section className="mb-12">
           <div className="bg-black/5 dark:bg-[#2f3136] darkest:bg-black border border-black/10 dark:border-[#40444b] darkest:border-white/20 rounded-lg p-6">

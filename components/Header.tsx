@@ -16,9 +16,9 @@ export default function Header() {
   }, []);
 
   return (
-    <header 
-      className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 ${
-        scrolled ? 'w-auto' : 'w-auto'
+    <header
+      className={`fixed top-6 left-0 right-0 mx-auto w-fit max-w-[calc(100vw-2rem)] z-50 transition-all duration-300 ${
+        scrolled ? 'w-fit' : 'w-fit'
       }`}
     >
       <div 
@@ -32,10 +32,31 @@ export default function Header() {
           className="flex items-center gap-2 text-lg font-bold tracking-tight hover:opacity-70 transition-opacity text-black dark:text-white darkest:text-white"
         >
             <Image src="/logo.svg" alt="AustroVis Logo" width={28} height={28} className="inline-block w-7 h-7" />
-          AustroVis
+          <span className="hidden sm:inline">AustroVis</span>
         </Link>
         <div className="w-px h-6 bg-black/10 dark:bg-white/10 darkest:bg-white/10" />
-        <a 
+        <Link
+          href="/register"
+          className="p-2 rounded-lg transition-all duration-300 hover:bg-gray-100 dark:hover:bg-[#40444b] darkest:hover:bg-gray-900"
+          aria-label="Register"
+          title="Register"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="text-black dark:text-white darkest:text-white">
+            <path d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
+          </svg>
+        </Link>
+        <Link
+          href="/mailing-list"
+          className="p-2 rounded-lg transition-all duration-300 hover:bg-gray-100 dark:hover:bg-[#40444b] darkest:hover:bg-gray-900"
+          aria-label="Mailing List"
+          title="Mailing List"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="text-black dark:text-white darkest:text-white">
+            <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+        </Link>
+        <div className="w-px h-6 bg-black/10 dark:bg-white/10 darkest:bg-white/10" />
+        <a
           href="https://discord.gg/rbkSzsxP47" 
           target="_blank" 
           rel="noopener noreferrer"
