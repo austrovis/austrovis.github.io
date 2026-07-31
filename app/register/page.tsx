@@ -179,6 +179,11 @@ export default function RegisterPage() {
             <p className="text-lg text-black dark:text-white darkest:text-white mb-2">
               <span className="font-semibold">Location:</span> {nextEvent.university}, {nextEvent.location}
             </p>
+            {nextEvent.speakers && nextEvent.speakers.length > 0 && (
+              <p className="text-lg text-black dark:text-white darkest:text-white mb-2">
+                <span className="font-semibold">Organizer{nextEvent.speakers.length > 1 ? 's' : ''}:</span> {nextEvent.speakers.join(', ')}
+              </p>
+            )}
             <p className="text-black/70 dark:text-[#b9bbbe] darkest:text-white/70">{nextEvent.description}</p>
           </div>
         </div>
