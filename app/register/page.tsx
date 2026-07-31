@@ -54,7 +54,7 @@ export default function RegisterPage() {
         setFormData({
           name: result.data.name || '',
           affiliation: result.data.affiliation || '',
-          isPresenting: result.data.isPresenting === 'Yes',
+          isPresenting: result.data.isPresenting === true || String(result.data.isPresenting).trim().toLowerCase() === 'yes',
           talkTitle: result.data.talkTitle || '',
           talkType: result.data.talkType || '',
           description: result.data.description || '',
