@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { getUpcomingEvents } from '@/lib/events';
 
-const REGISTRATION_OPEN = true; // Toggle this to open/close registration
+const REGISTRATION_OPEN = false; // Toggle this to open/close registration
 
 export default function RegisterPage() {
   const upcomingEvents = getUpcomingEvents();
